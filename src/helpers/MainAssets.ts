@@ -1,0 +1,1 @@
+export { default as logo } from '../assets/logotipo/vanbora-2.png'
