@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { CalendarBlankIcon, ClockIcon, MoneyIcon } from "@phosphor-icons/react";
 import { VanIcon } from "@phosphor-icons/react/dist/ssr";
+import { deleteTrip, suspendedTrip } from "../services/TripServices";
 
 function TripRow() {
     const navigate = useNavigate()
@@ -23,32 +24,56 @@ function TripRow() {
                 </div>
 
                 <div className="
-                        flex flex-row
-                        gap-6
+                        flex flex-col md:flex-row
+                        gap-3 md:gap-6
                         ">
-                    <div className="flex items-center justify-center w-auto flex-col md:flex-row md:gap-1">
+                    <div className="
+                    flex md:flex-col
+                    w-auto 
+                    items-center
+                    gap-2 md:gap-1
+                    ">
                         <ClockIcon size={20} />
-                        <p className="text-center">05:00</p>
+                        <p className="md:text-center">05:00</p>
                     </div>
-                    <div className="flex items-center w-auto justify-center flex-col md:flex-row md:gap-1">
+
+                    <div className="
+                    flex md:flex-col
+                    w-auto 
+                    items-center
+                    gap-2 md:gap-1
+                    ">
                         <CalendarBlankIcon size={20} />
                         <p className="text-center">Seg a Sab</p>
                     </div>
-                    <div className="flex items-center w-auto justify-center flex-col md:flex-row md:gap-1">
+                    <div className="
+                    flex md:flex-col
+                    w-auto 
+                    items-center
+                    gap-2 md:gap-1
+                    ">
                         <VanIcon size={20} />
                         <p className="text-center">16 lugares</p>
                     </div>
-                    <div className="flex items-center w-auto justify-center flex-col md:flex-row md:gap-1">
+                    <div className="
+                    flex md:flex-col
+                    w-auto 
+                    items-center
+                    gap-2 md:gap-1
+                    ">
                         <MoneyIcon size={20} />
                         <p className="text-center">R$20</p>
                     </div>
                 </div>
                 <div className="
-                        flex justify-between md:justify-end md:gap-3 
+                        flex 
+                        md:justify-center items-center 
+                        gap-3 
                         
                         ">
-                    <Button type="button" title="Editar" outline />
-                    <Button type="button" title="Apagar" outline />
+                    <Button type="button" title="Editar" outline click={() => navigate('/viagem/1')} />
+                    <Button type="button" title="Suspender" outline click={() => suspendedTrip()} />
+                    <Button type="button" title="Apagar" outline click={() => deleteTrip()} />
                 </div>
             </div>
         </>

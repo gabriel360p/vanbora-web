@@ -7,6 +7,8 @@ function Default() {
             <Navbar />
             <div className="h-14" />
             <Outlet />
+            <div className="h-8" />
+
         </>
     )
 }

@@ -6,6 +6,8 @@ import { logo } from "../helpers/MainAssets";
 
 function Navbar() {
     const navigate = useNavigate();
+    const [logging, setLogging] = useState<boolean>(true);
+
     const [navState, setNavState] = useState<boolean>(false);
     function handleNavControl() {
         setNavState(!navState);
@@ -38,7 +40,11 @@ function Navbar() {
                         Sobre
                     </ol>
                     <ol className="items-navbar-desktop">
-                        <Button title="Sou Motorista" outline type='button' click={() => navigate('/login')} />
+                        {logging ? (
+                            <Button title="Painel Motorista" outline type='button' click={() => navigate('/painel-motorista')} />
+                        ) : (
+                            <Button title="Sou Motorista" outline type='button' click={() => navigate('/login')} />
+                        )}
                     </ol>
                 </li>
             </nav>
@@ -64,7 +70,11 @@ function Navbar() {
                             Sobre
                         </ol>
                         <ol className="items-navbar-mobile">
-                            <Button title="Sou Motorista" outline type='button' click={() => navigate('/login')} />
+                            {logging ? (
+                                <Button title="Painel Motorista" outline type='button' click={() => navigate('/painel-motorista')} />
+                            ) : (
+                                <Button title="Sou Motorista" outline type='button' click={() => navigate('/login')} />
+                            )}
                         </ol>
                     </li>
                 </div>

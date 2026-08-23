@@ -46,7 +46,7 @@ function Driverboard() {
                     flex
                     w-full md:max-w-70
                     ">
-                        <Button title="Adicionar novo veículo" type="button" full />
+                        <Button title="Adicionar novo veículo" type="button" full click={() => navigate('/novo-veiculo')} />
                     </div>
                 </div>
                 <div className="
@@ -86,7 +86,7 @@ function Driverboard() {
                     flex
                     w-full md:max-w-70
                     ">
-                        <Button title="Adicionar nova viagem" type="button" full />
+                        <Button title="Adicionar nova viagem" type="button" full click={() => navigate('/nova-viagem')} />
                     </div>
                 </div>
                 <div className="flex flex-col w-full gap-3">
@@ -97,10 +97,7 @@ function Driverboard() {
                     <TripRow />
                     <TripRow />
                     <TripRow />
-                    <TripRow />
-                    <TripRow />
-                    <TripRow />
-                    <TripRow />
+
                 </div>
 
             </div>

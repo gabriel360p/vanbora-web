@@ -25,6 +25,7 @@ function Button({ title, outline, full, type, style, click }: ButtonProps) {
             ${full && 'w-full'}
             ${outline ? 'button-outline' : 'button-normal'}
             ${style}  
+            h-fit
         `}>
             {title}
         </button>

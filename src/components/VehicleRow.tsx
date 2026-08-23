@@ -1,3 +1,4 @@
+import { deleteVehicle } from "../services/VehicleServices";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 
@@ -34,9 +35,14 @@ function VehicleRow() {
                     justify-center
                     gap-1 ps-2.5 md:ps-4
                     ">
-                        <p className="text-[1rem] md:text-lg font-semibold">ABC - 1234</p>
-                        <p className="text-[1rem] md:text-lg">16 lugares</p>
-                        <Button type="button" title="Editar" outline />
+                        <div className="flex flex-col gap-1">
+                            <p className="text-[1rem] md:text-lg font-semibold">ABC - 1234</p>
+                            <p className="text-[1rem] md:text-lg">16 lugares</p>
+                        </div>
+                        <div className="flex gap-1">
+                            <Button type="button" title="Editar" outline click={() => navigate('/veiculo/1')} />
+                            <Button type="button" title="Apagar" outline click={() => deleteVehicle()} />
+                        </div>
 
                     </div>
 
