@@ -4,7 +4,7 @@ import Button from "../../components/Button";
 
 import { useState } from "react";
 import { logo } from "../../helpers/MainAssets";
-import { login } from "../../services/AuthService";
+import { login } from "../../services/AuthServices";
 
 function Login() {
     const [eye, setEye] = useState<boolean>(false);
@@ -12,7 +12,7 @@ function Login() {
 
     function handleLogin() {
         login()
-        navigate('/motorista')
+        navigate('/painel-motorista')
     }
 
     function handleEye() {
