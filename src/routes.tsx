@@ -14,6 +14,8 @@ import HelpDriver from './containers/Driver/HelpDriver.tsx';
 import NewVehicle from './containers/Driver/Vehicle/NewVehicle.tsx';
 import EditVehicle from './containers/Driver/Vehicle/EditVehicle.tsx';
 import EditTrip from './containers/Driver/Trips/EditTrip.tsx';
+import DriverProfile from './containers/Driver/DriverProfile.tsx';
+import About from './containers/About.tsx';
 
 function Roteamento() {
     return (
@@ -34,14 +36,16 @@ function Roteamento() {
                     <Route path='/veiculo/:id' element={<EditVehicle />} />
 
                     <Route path='/ajuda-motorista' element={<HelpDriver />} />
-
-                    <Route path='/sair' element={<HelpDriver />} />
+                    <Route path='/perfil-motorista' element={<DriverProfile />} />
 
                 </Route>
 
+
                 <Route element={<Default />}>
+                    <Route path='/sair' element={<Home />} />
                     <Route path='*' element={<Error404 />} />
                     <Route path='/' element={<Home />} />
+                    <Route path='/sobre' element={<About />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/cadastro' element={<Register />} />
                     <Route path='/viagem-detalhes/:id' element={<TripDetails />} />

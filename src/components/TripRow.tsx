@@ -2,7 +2,7 @@ import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 
 
-import { CalendarBlankIcon, ClockIcon } from "@phosphor-icons/react";
+import { CalendarBlankIcon, ClockIcon, MoneyIcon } from "@phosphor-icons/react";
 import { VanIcon } from "@phosphor-icons/react/dist/ssr";
 
 function TripRow() {
@@ -26,17 +26,21 @@ function TripRow() {
                         flex flex-row
                         gap-6
                         ">
-                    <div className="flex items-center w-auto gap-1">
+                    <div className="flex items-center justify-center w-auto flex-col md:flex-row md:gap-1">
                         <ClockIcon size={20} />
-                        <p>05:00</p>
+                        <p className="text-center">05:00</p>
                     </div>
-                    <div className="flex items-center w-auto gap-1">
+                    <div className="flex items-center w-auto justify-center flex-col md:flex-row md:gap-1">
                         <CalendarBlankIcon size={20} />
-                        <p>Seg a Sab</p>
+                        <p className="text-center">Seg a Sab</p>
                     </div>
-                    <div className="flex items-center w-auto gap-1">
+                    <div className="flex items-center w-auto justify-center flex-col md:flex-row md:gap-1">
                         <VanIcon size={20} />
-                        <p>16 lugares</p>
+                        <p className="text-center">16 lugares</p>
+                    </div>
+                    <div className="flex items-center w-auto justify-center flex-col md:flex-row md:gap-1">
+                        <MoneyIcon size={20} />
+                        <p className="text-center">R$20</p>
                     </div>
                 </div>
                 <div className="

@@ -31,10 +31,10 @@ function Navbar() {
                     <ol onClick={() => navigate('/')} className="items-navbar-desktop">
                         Inicio
                     </ol>
-                    <ol onClick={() => navigate('/')} className="items-navbar-desktop">
+                    {/* <ol onClick={() => navigate('/')} className="items-navbar-desktop">
                         Encontrar viagem
-                    </ol>
-                    <ol onClick={() => navigate('/')} className="items-navbar-desktop">
+                    </ol> */}
+                    <ol onClick={() => navigate('/sobre')} className="items-navbar-desktop">
                         Sobre
                     </ol>
                     <ol className="items-navbar-desktop">
@@ -57,10 +57,10 @@ function Navbar() {
                         <ol onClick={() => navigate('/')} className="items-navbar-mobile">
                             Inicio
                         </ol>
-                        <ol onClick={() => navigate('/')} className="items-navbar-mobile">
+                        {/* <ol onClick={() => navigate('/')} className="items-navbar-mobile">
                             Encontrar viagem
-                        </ol>
-                        <ol onClick={() => navigate('/')} className="items-navbar-mobile">
+                        </ol> */}
+                        <ol onClick={() => navigate('/sobre')} className="items-navbar-mobile">
                             Sobre
                         </ol>
                         <ol className="items-navbar-mobile">

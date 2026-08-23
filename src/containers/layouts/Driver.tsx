@@ -6,9 +6,10 @@ function Driver() {
     return (
         <>
             <NavbarDriverboard />
-            <div className="h-14" />
+            <div className="h-20" />
 
             <Outlet />
+            <div className="h-8" />
         </>
     )
 }

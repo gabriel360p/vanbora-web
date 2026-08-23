@@ -22,7 +22,12 @@ function Login() {
     return (
         <>
             <section
-                className="flex items-center justify-center w-screen h-screen px-5"
+                className="
+                flex 
+                items-center justify-center 
+                w-screen 
+                px-5 mt-15 md:mt-20
+                "
             >
                 <div className="
                 flex flex-col 

@@ -33,10 +33,10 @@ function NavbarDriverboard() {
                     <ol onClick={() => navigate('/minhas-viagens')} className="items-navbar-desktop">
                         Minhas viagens
                     </ol>
-                    <ol onClick={() => navigate('/meus-veiculos')} className="items-navbar-desktop">
+                    {/* <ol onClick={() => navigate('/meus-veiculos')} className="items-navbar-desktop">
                         Meus veiculos
-                    </ol>
-                    <ol onClick={() => navigate('/meu-perfil')} className="items-navbar-desktop">
+                    </ol> */}
+                    <ol onClick={() => navigate('/perfil-motorista')} className="items-navbar-desktop">
                         Meu perfil
                     </ol>
                     <ol onClick={() => navigate('/ajuda-motorista')} className="items-navbar-desktop">
@@ -53,7 +53,7 @@ function NavbarDriverboard() {
                     className="
                     w-screen fixed
                     md:hidden
-                    h-80
+                    h-68
                     z-50 mt-17 pt-2
                     bg-white shadow-md
                     "
@@ -65,10 +65,10 @@ function NavbarDriverboard() {
                         <ol onClick={() => navigate('/minhas-viagens')} className="items-navbar-mobile">
                             Minhas viagens
                         </ol>
-                        <ol onClick={() => navigate('/meus-veiculos')} className="items-navbar-mobile">
+                        {/* <ol onClick={() => navigate('/meus-veiculos')} className="items-navbar-mobile">
                             Meus veiculos
-                        </ol>
-                        <ol onClick={() => navigate('/meu-perfil')} className="items-navbar-mobile">
+                        </ol> */}
+                        <ol onClick={() => navigate('/perfil-motorista')} className="items-navbar-mobile">
                             Meu perfil
                         </ol>
                         <ol onClick={() => navigate('/ajuda-motorista')} className="items-navbar-mobile">
