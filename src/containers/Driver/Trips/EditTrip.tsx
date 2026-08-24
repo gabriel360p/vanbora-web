@@ -8,7 +8,6 @@ function EditTrip() {
         items-center justify-center 
         w-screen 
         px-5 
-        
         ">
             <div>
                 <h1 className="font-semibold text-xl my-2">Editar viagem</h1>

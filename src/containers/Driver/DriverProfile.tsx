@@ -1,10 +1,10 @@
 import { PasswordIcon, PhoneIcon, UserCircleIcon, UserIcon } from "@phosphor-icons/react";
 import Button from "../../components/Button";
 import { editDriver } from "../../services/DriverServices";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 function DriverProfile() {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     function handleEdit() {
         editDriver();
     }
@@ -57,7 +57,7 @@ function DriverProfile() {
                                     p-2 ps-10                            
                             `}
                             />
-                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-[5px] right-0 left-1">
+                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-1.25 right-0 left-1">
                                 <UserIcon size={18} className="" />
                             </div>
                         </div>
@@ -71,7 +71,7 @@ function DriverProfile() {
                                     p-2 ps-10                            
                             `}
                             />
-                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-[5px] right-0 left-1">
+                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-1.25 right-0 left-1">
                                 <UserIcon size={18} className="" />
                             </div>
                         </div>
@@ -85,7 +85,7 @@ function DriverProfile() {
                                     p-2 ps-10                            
                             `}
                             />
-                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-[5px] right-0 left-1">
+                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-1.25 right-0 left-1">
                                 <PasswordIcon size={18} className="" />
                             </div>
                         </div>
@@ -100,7 +100,7 @@ function DriverProfile() {
                                     p-2 ps-10                            
                             `}
                             />
-                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-[5px] right-0 left-1">
+                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-1.25 right-0 left-1">
                                 <PhoneIcon size={18} className="" />
                             </div>
                         </div>
@@ -114,7 +114,7 @@ function DriverProfile() {
                                     p-2 ps-10                            
                             `}
                             />
-                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-[5px] right-0 left-1">
+                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-1.25 right-0 left-1">
                                 <PhoneIcon size={18} className="" />
                             </div>
                         </div>
@@ -130,7 +130,7 @@ function DriverProfile() {
                                     p-2 ps-10                            
                             `}
                         />
-                        <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-[35px] right-0 left-1">
+                        <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-8.75 right-0 left-1">
                             <UserCircleIcon size={18} className="" />
                         </div>
                     </div>
