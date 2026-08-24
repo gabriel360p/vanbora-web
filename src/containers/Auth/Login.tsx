@@ -69,7 +69,7 @@ function Login() {
                             `}
                             />
                             <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-[5px] right-0 left-1">
-                                <EyeIcon size={18} className="" />
+                                <EyeIcon size={18} className="" onClick={() => handleEye()} />
                             </div>
                         </div>
 

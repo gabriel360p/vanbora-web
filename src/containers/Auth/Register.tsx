@@ -2,7 +2,7 @@ import { PasswordIcon, PhoneIcon, UserCircleIcon, UserIcon } from "@phosphor-ico
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 
-import { useState } from "react";
+// import { useState } from "react";
 import { logo } from "../../helpers/MainAssets";
 import { register } from "../../services/AuthServices";
 
@@ -40,6 +40,21 @@ function Register() {
                     w-full
                     gap-5
                     ">
+                        <div className="w-auto relative">
+                            <input
+                                placeholder="Nome completo"
+                                type="text"
+                                className={`
+                                    w-full    
+                                    border border-gray-300 rounded-md
+                                    p-2 ps-10                            
+                            `}
+                            />
+                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-[5px] right-0 left-1">
+                                <UserIcon size={18} className="" />
+                            </div>
+                        </div>
+
                         <div className="w-auto relative">
                             <input
                                 placeholder="Email ou CPF"
