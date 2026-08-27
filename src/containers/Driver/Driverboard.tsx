@@ -2,6 +2,7 @@ import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import TripRow from "../../components/TripRow";
 import VehicleRow from "../../components/VehicleRow";
+import { getUserName } from "../../contexts/user";
 
 function Driverboard() {
     const navigate = useNavigate()
@@ -21,7 +22,7 @@ function Driverboard() {
                         <div className="w-25 h-25 bg-gray-800 rounded-full" ></div>
                     </div>
                     <div className="flex gap-4 flex-col w-full max-w-80">
-                        <p className="font-semibold md:text-[1.2rem]">Olá, João!</p>
+                        <p className="font-semibold md:text-[1.2rem]">Olá, {getUserName()}!</p>
                         <p className="md:text-[1rem">Bem vindo de volta ao seu painel. Gerencie suas viagens e fique por dentro de tudo</p>
                         <Button title='Meu Perfil' outline type='button' click={() => navigate('/perfil-motorista')} />
                     </div>

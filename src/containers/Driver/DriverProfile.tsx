@@ -1,6 +1,7 @@
 import { PasswordIcon, PhoneIcon, UserCircleIcon, UserIcon } from "@phosphor-icons/react";
 import Button from "../../components/Button";
 import { editDriver } from "../../services/DriverServices";
+import { getUserEmail, getUserName, getUserPhone1, getUserPhone2 } from "../../contexts/user";
 // import { useNavigate } from "react-router-dom";
 
 function DriverProfile() {
@@ -24,7 +25,7 @@ function DriverProfile() {
                         {/* <img src="" alt="foto-motorista" /> */}
                         <div className="w-25 h-25 bg-gray-800 rounded-full" ></div>
                     </div>
-                    <p className="font-semibold md:text-[1.2rem]">Olá João!</p>
+                    <p className="font-semibold md:text-[1.2rem]">Olá {getUserName()}!</p>
 
                 </div>
 
@@ -51,6 +52,7 @@ function DriverProfile() {
                             <input
                                 placeholder="Nome completo"
                                 type="text"
+                                value={getUserName()}
                                 className={`
                                     w-full    
                                     border border-gray-300 rounded-md
@@ -65,6 +67,7 @@ function DriverProfile() {
                             <input
                                 placeholder="Email ou CPF"
                                 type="text"
+                                value={getUserEmail()}
                                 className={`
                                     w-full    
                                     border border-gray-300 rounded-md
@@ -94,6 +97,7 @@ function DriverProfile() {
                             <input
                                 placeholder="Número de telefone 1 (obrigatório)"
                                 type="tel"
+                                value={getUserPhone1()}
                                 className={`
                                     w-full    
                                     border border-gray-300 rounded-md
@@ -108,6 +112,7 @@ function DriverProfile() {
                             <input
                                 placeholder="Número de telefone 2 (opcional)"
                                 type="tel"
+                                value={getUserPhone2()}
                                 className={`
                                     w-full    
                                     border border-gray-300 rounded-md

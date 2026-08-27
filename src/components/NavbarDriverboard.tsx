@@ -2,10 +2,16 @@ import { ListIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { logo } from "../helpers/MainAssets";
+import { logout } from '../services/AuthServices';
 
 function NavbarDriverboard() {
     const navigate = useNavigate();
     const [navState, setNavState] = useState<boolean>(false);
+
+    async function handleLogout() {
+        await logout();
+        navigate('/sair');
+    }
     function handleNavControl() {
         setNavState(!navState);
         setTimeout(() => {
@@ -42,7 +48,7 @@ function NavbarDriverboard() {
                     <ol onClick={() => navigate('/ajuda-motorista')} className="items-navbar-desktop">
                         Ajuda
                     </ol>
-                    <ol onClick={() => navigate('/sair')} className="items-navbar-desktop">
+                    <ol onClick={() => { handleLogout() }} className="items-navbar-desktop">
                         Sair
                     </ol>
                 </li>
@@ -74,7 +80,7 @@ function NavbarDriverboard() {
                         <ol onClick={() => navigate('/ajuda-motorista')} className="items-navbar-mobile">
                             Ajuda
                         </ol>
-                        <ol onClick={() => navigate('/sair')} className="items-navbar-mobile">
+                        <ol onClick={() => handleLogout()} className="items-navbar-mobile">
                             Sair
                         </ol>
                     </li>

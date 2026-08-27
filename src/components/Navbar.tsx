@@ -6,7 +6,7 @@ import { logo } from "../helpers/MainAssets";
 
 function Navbar() {
     const navigate = useNavigate();
-    const [logging, setLogging] = useState<boolean>(true);
+    const [logging, setLogging] = useState<boolean>(false);
 
     const [navState, setNavState] = useState<boolean>(false);
     function handleNavControl() {
