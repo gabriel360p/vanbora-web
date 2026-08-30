@@ -16,44 +16,52 @@ import EditVehicle from './containers/Driver/Vehicle/EditVehicle.tsx';
 import EditTrip from './containers/Driver/Trips/EditTrip.tsx';
 import DriverProfile from './containers/Driver/DriverProfile.tsx';
 import About from './containers/About.tsx';
+import { UserProvider } from './contexts/userContext.tsx';
+import { AuthMiddleware } from './services/AuthMiddleware.tsx';
 
 function Roteamento() {
     return (
-        <BrowserRouter>
-            <Routes>
+        <UserProvider>
 
-                <Route element={<Driver />}>
-                    <Route path='/painel-motorista' element={<Driverboard />} />
-                    <Route path='/meu-perfil' element={<Driverboard />} />
-                    <Route path='/ajuda' element={<Driverboard />} />
+            <BrowserRouter>
+                <Routes>
+                    <Route element={<AuthMiddleware />}>
 
-                    <Route path='/minhas-viagens' element={<Trips />} />
-                    <Route path='/nova-viagem' element={<NewTrip />} />
-                    <Route path='/viagem/:id' element={<EditTrip />} />
+                        <Route element={<Driver />}>
+                            <Route path='/painel-motorista' element={<Driverboard />} />
+                            <Route path='/meu-perfil' element={<Driverboard />} />
+                            <Route path='/ajuda' element={<Driverboard />} />
 
-                    <Route path='/meus-veiculos' element={<Driverboard />} />
-                    <Route path='/novo-veiculo' element={<NewVehicle />} />
-                    <Route path='/veiculo/:id' element={<EditVehicle />} />
+                            <Route path='/minhas-viagens' element={<Trips />} />
+                            <Route path='/nova-viagem' element={<NewTrip />} />
+                            <Route path='/viagem/:id' element={<EditTrip />} />
 
-                    <Route path='/ajuda-motorista' element={<HelpDriver />} />
-                    <Route path='/perfil-motorista' element={<DriverProfile />} />
+                            <Route path='/meus-veiculos' element={<Driverboard />} />
+                            <Route path='/novo-veiculo' element={<NewVehicle />} />
+                            <Route path='/veiculo/:id' element={<EditVehicle />} />
 
-                </Route>
+                            <Route path='/ajuda-motorista' element={<HelpDriver />} />
+                            <Route path='/perfil-motorista' element={<DriverProfile />} />
 
-
-                <Route element={<Default />}>
-                    <Route path='/sair' element={<Home />} />
-                    <Route path='*' element={<Error404 />} />
-                    <Route path='/' element={<Home />} />
-                    <Route path='/sobre' element={<About />} />
-                    <Route path='/login' element={<Login />} />
-                    <Route path='/cadastro' element={<Register />} />
-                    <Route path='/viagem-detalhes/:id' element={<TripDetails />} />
-                </Route>
+                        </Route>
+                    </Route>
 
 
-            </Routes>
-        </BrowserRouter>
+                    <Route element={<Default />}>
+                        <Route path='/sair' element={<Home />} />
+                        <Route path='*' element={<Error404 />} />
+                        <Route path='/' element={<Home />} />
+                        <Route path='/sobre' element={<About />} />
+                        <Route path='/login' element={<Login />} />
+                        <Route path='/cadastro' element={<Register />} />
+                        <Route path='/viagem-detalhes/:id' element={<TripDetails />} />
+                    </Route>
+
+
+                </Routes>
+            </BrowserRouter>
+        </UserProvider>
+
     )
 }
 

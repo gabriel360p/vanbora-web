@@ -7,18 +7,17 @@ import { logo } from "../../helpers/MainAssets";
 import { login } from "../../services/AuthServices";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from "react-hook-form";
-import type { LoginValidation } from "../../types/LoginFormValidation";
-import { userLoginSchema } from "../../schemas/LoginFormSchema";
+import type { LoginInterface } from "../../types/LoginFormInterface";
+import { LoginValidateSchema } from "../../schemas/LoginFormSchema";
 
 function Login() {
     const [eye, setEye] = useState<boolean>(false);
     const [load, setLoad] = useState<boolean>(false);
     const navigate = useNavigate();
 
-    async function handleLogin(dataLogin: LoginValidation) {
+    async function handleLogin(dataLogin: LoginInterface) {
         setLoad(true)
-        const state = await login(dataLogin)
-        if (state) {
+        if (await login(dataLogin)) {
             navigate('/painel-motorista');
         }
         setLoad(false)
@@ -28,8 +27,8 @@ function Login() {
         setEye(!eye)
     }
 
-    const { register, handleSubmit, formState: { errors } } = useForm<LoginValidation>({
-        resolver: yupResolver(userLoginSchema),
+    const { register, handleSubmit, formState: { errors } } = useForm<LoginInterface>({
+        resolver: yupResolver(LoginValidateSchema),
     })
 
     return (
@@ -78,6 +77,11 @@ function Login() {
                                     <UserIcon size={18} className="" />
                                 </div>
                             </div>
+                            {errors?.email && (
+                                <p className="bg-red-500 text-white px-1 border border-red-500 rounded-xl w-fit">
+                                    {errors.email.message}
+                                </p>
+                            )}
                             <div className="w-auto relative">
                                 <input
                                     {...register('password')}
@@ -93,11 +97,14 @@ function Login() {
                                     <EyeIcon size={18} className="" onClick={() => handleEye()} />
                                 </div>
                             </div>
-
+                            {errors?.password && (
+                                <p className="bg-red-500 text-white px-1 border border-red-500 rounded-xl w-fit">
+                                    {errors.password.message}
+                                </p>
+                            )}
                         </div>
-                        <div className="w-[50%] mt-4">
+                        <div className="flex justify-center items-center w-full  mt-4">
                             <Button title="Entrar" type="submit" full
-                            // click={() => handleLogin()}
                             />
                         </div>
 

@@ -12,6 +12,7 @@ function NavbarDriverboard() {
         await logout();
         navigate('/sair');
     }
+
     function handleNavControl() {
         setNavState(!navState);
         setTimeout(() => {
@@ -48,7 +49,7 @@ function NavbarDriverboard() {
                     <ol onClick={() => navigate('/ajuda-motorista')} className="items-navbar-desktop">
                         Ajuda
                     </ol>
-                    <ol onClick={() => { handleLogout() }} className="items-navbar-desktop">
+                    <ol onClick={handleLogout} className="items-navbar-desktop">
                         Sair
                     </ol>
                 </li>
@@ -80,7 +81,7 @@ function NavbarDriverboard() {
                         <ol onClick={() => navigate('/ajuda-motorista')} className="items-navbar-mobile">
                             Ajuda
                         </ol>
-                        <ol onClick={() => handleLogout()} className="items-navbar-mobile">
+                        <ol onClick={handleLogout} className="items-navbar-mobile">
                             Sair
                         </ol>
                     </li>

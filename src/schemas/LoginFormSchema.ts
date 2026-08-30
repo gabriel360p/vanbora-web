@@ -1,13 +1,12 @@
 import * as yup from 'yup';
 
-export const userLoginSchema = yup.object({
+export const LoginValidateSchema = yup.object({
     email: yup
         .string()
-        .email('Email inválido')
-        .required('Email obrigatório'),
+        .required('Insira o Email ou CPF'),
 
     password: yup
         .string()
-        .min(1, 'Mínimo de 6 caracteres')
+        .min(1, 'Mínimo de 8 caracteres')
         .required('Senha obrigatória'),
 });

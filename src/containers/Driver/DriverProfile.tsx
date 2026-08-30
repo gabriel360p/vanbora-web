@@ -1,11 +1,13 @@
 import { PasswordIcon, PhoneIcon, UserCircleIcon, UserIcon } from "@phosphor-icons/react";
 import Button from "../../components/Button";
 import { editDriver } from "../../services/DriverServices";
-import { getUserEmail, getUserName, getUserPhone1, getUserPhone2 } from "../../contexts/user";
+import { useUser } from "../../contexts/userContext";
+
 // import { useNavigate } from "react-router-dom";
 
 function DriverProfile() {
     // const navigate = useNavigate();
+    const { user } = useUser();
     function handleEdit() {
         editDriver();
     }
@@ -25,7 +27,7 @@ function DriverProfile() {
                         {/* <img src="" alt="foto-motorista" /> */}
                         <div className="w-25 h-25 bg-gray-800 rounded-full" ></div>
                     </div>
-                    <p className="font-semibold md:text-[1.2rem]">Olá {getUserName()}!</p>
+                    <p className="font-semibold md:text-[1.2rem]">Olá {user.name}!</p>
 
                 </div>
 
@@ -52,7 +54,8 @@ function DriverProfile() {
                             <input
                                 placeholder="Nome completo"
                                 type="text"
-                                value={getUserName()}
+                                value={user.name}
+                                onChange={(e) => e.target.value}
                                 className={`
                                     w-full    
                                     border border-gray-300 rounded-md
@@ -65,9 +68,26 @@ function DriverProfile() {
                         </div>
                         <div className="w-auto relative">
                             <input
-                                placeholder="Email ou CPF"
+                                placeholder="Email"
                                 type="text"
-                                value={getUserEmail()}
+                                value={user.email}
+                                onChange={(e) => e.target.value}
+                                className={`
+                                    w-full    
+                                    border border-gray-300 rounded-md
+                                    p-2 ps-10                            
+                            `}
+                            />
+                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-1.25 right-0 left-1">
+                                <UserIcon size={18} className="" />
+                            </div>
+                        </div>
+                        <div className="w-auto relative">
+                            <input
+                                placeholder="CPF"
+                                type="text"
+                                value={user.cpf}
+                                onChange={(e) => e.target.value}
                                 className={`
                                     w-full    
                                     border border-gray-300 rounded-md
@@ -97,7 +117,8 @@ function DriverProfile() {
                             <input
                                 placeholder="Número de telefone 1 (obrigatório)"
                                 type="tel"
-                                value={getUserPhone1()}
+                                value={user.phone1}
+                                onChange={(e) => e.target.value}
                                 className={`
                                     w-full    
                                     border border-gray-300 rounded-md
@@ -112,7 +133,8 @@ function DriverProfile() {
                             <input
                                 placeholder="Número de telefone 2 (opcional)"
                                 type="tel"
-                                value={getUserPhone2()}
+                                value={user.phone2}
+                                onChange={(e) => e.target.value}
                                 className={`
                                     w-full    
                                     border border-gray-300 rounded-md

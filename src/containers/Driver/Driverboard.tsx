@@ -2,13 +2,21 @@ import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import TripRow from "../../components/TripRow";
 import VehicleRow from "../../components/VehicleRow";
-import { getUserName } from "../../contexts/user";
-
+import { useUser } from "../../contexts/userContext";
+import { useEffect } from "react";
+import { isAuthenticate } from "../../services/AuthServices";
 function Driverboard() {
+    const { user, refreshUser } = useUser();
+
+    useEffect(() => {
+        isAuthenticate()
+
+        refreshUser()
+    }, [])
+
     const navigate = useNavigate()
     return (
         <section className="flex flex-col gap-5 w-screen px-4">
-
             <div className="flex items-center flex-col w-full">
                 <div className="
                 flex 
@@ -22,7 +30,7 @@ function Driverboard() {
                         <div className="w-25 h-25 bg-gray-800 rounded-full" ></div>
                     </div>
                     <div className="flex gap-4 flex-col w-full max-w-80">
-                        <p className="font-semibold md:text-[1.2rem]">Olá, {getUserName()}!</p>
+                        <p className="font-semibold md:text-[1.2rem]">Olá, {user.name}!</p>
                         <p className="md:text-[1rem">Bem vindo de volta ao seu painel. Gerencie suas viagens e fique por dentro de tudo</p>
                         <Button title='Meu Perfil' outline type='button' click={() => navigate('/perfil-motorista')} />
                     </div>
