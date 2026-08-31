@@ -90,28 +90,6 @@ function Register() {
                                     </p>
                                 )}
                             </div>
-
-
-                            <div className="w-auto relative">
-                                <input
-                                    {...register('password')}
-                                    placeholder="Senha de usuário"
-                                    type="password"
-                                    className={`
-                                    w-full    
-                                    border border-gray-300 rounded-md
-                                    p-2 ps-10                            
-                            `}
-                                />
-                                <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-1.25 right-0 left-1">
-                                    <PasswordIcon size={18} className="" />
-                                </div>
-                                {errors?.password && (
-                                    <p className="bg-red-500 text-white px-1.5 mt-1 border border-red-500 rounded-xl w-fit">
-                                        {errors?.password.message}
-                                    </p>
-                                )}
-                            </div>
                             <div className="w-auto relative">
                                 <input
                                     {...register('cpf')}
@@ -133,6 +111,28 @@ function Register() {
                                     </p>
                                 )}
                             </div>
+
+                            <div className="w-auto relative">
+                                <input
+                                    {...register('password')}
+                                    placeholder="Senha de usuário"
+                                    type="password"
+                                    className={`
+                                    w-full    
+                                    border border-gray-300 rounded-md
+                                    p-2 ps-10                            
+                            `}
+                                />
+                                <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-1.25 right-0 left-1">
+                                    <PasswordIcon size={18} className="" />
+                                </div>
+                                {errors?.password && (
+                                    <p className="bg-red-500 text-white px-1.5 mt-1 border border-red-500 rounded-xl w-fit">
+                                        {errors?.password.message}
+                                    </p>
+                                )}
+                            </div>
+
                             <div className="w-auto relative">
                                 <input
                                     placeholder="Número de telefone 1 (obrigatório)"
