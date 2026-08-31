@@ -33,8 +33,9 @@ export async function register(dataRegister: RegisterInterface) {
     //acesso ao back-end
     try {
 
-        await api.post("/cadastro", dataRegister);
+        const { data } = await api.post("/cadastro", dataRegister);
         console.log("Fazendo o cadastro")
+        localStorage.setItem('vanbora:user', JSON.stringify(data))
         return true
     } catch (error) {
         console.error(error)

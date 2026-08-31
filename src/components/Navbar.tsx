@@ -40,11 +40,7 @@ function Navbar() {
                         Sobre
                     </ol>
                     <ol className="items-navbar-desktop">
-                        {logging ? (
-                            <Button title="Painel Motorista" outline type='button' click={() => navigate('/painel-motorista')} />
-                        ) : (
-                            <Button title="Sou Motorista" outline type='button' click={() => navigate('/login')} />
-                        )}
+                        <Button title="Sou Motorista" outline type='button' click={() => navigate('/painel-motorista')} />
                     </ol>
                 </li>
             </nav>
@@ -70,11 +66,7 @@ function Navbar() {
                             Sobre
                         </ol>
                         <ol className="items-navbar-mobile">
-                            {logging ? (
-                                <Button title="Painel Motorista" outline type='button' click={() => navigate('/painel-motorista')} />
-                            ) : (
-                                <Button title="Sou Motorista" outline type='button' click={() => navigate('/login')} />
-                            )}
+                            <Button title="Sou Motorista" outline type='button' click={() => navigate('/painel-motorista')} />
                         </ol>
                     </li>
                 </div>

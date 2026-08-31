@@ -14,7 +14,7 @@ function Register() {
     const navigate = useNavigate();
 
     async function handleRegister(dataRegister: RegisterInterface) {
-        if (await cadastrar(dataRegister)) navigate('/login')
+        if (await cadastrar(dataRegister)) navigate('/painel-motorista')
     }
 
 
