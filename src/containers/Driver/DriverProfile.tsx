@@ -4,14 +4,15 @@ import { editDriver } from "../../services/DriverServices";
 import { useUser } from "../../contexts/userContext";
 import Input from "../../components/Input";
 
-// import { useNavigate } from "react-router-dom";
-
 function DriverProfile() {
     // const navigate = useNavigate();
     const { user } = useUser();
+    console.log(user)
+
     function handleEdit() {
         editDriver();
     }
+
     return (
         <section className="
         flex flex-col lg:flex-row 

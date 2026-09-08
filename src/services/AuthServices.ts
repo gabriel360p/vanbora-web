@@ -7,7 +7,7 @@ export async function login(dataLogin: LoginInterface) {
     //acesso ao back-end
     try {
         const { data } = await api.post("/login", dataLogin);
-        console.log(data)
+        // console.log(data)
         // console.log(JSON.parse(data))
         //salvando os dados no localstorage para ser acessado com o context
         localStorage.setItem('vanbora:user', JSON.stringify(data))
@@ -22,7 +22,7 @@ export async function logout() {
     //acesso ao back-end
     try {
         await api.get("/logout");
-        console.log("Fazendo Logout")
+        // console.log("Fazendo Logout")
         localStorage.clear();
     } catch (error) {
         console.error(error)
@@ -34,7 +34,7 @@ export async function register(dataRegister: RegisterInterface) {
     try {
 
         const { data } = await api.post("/cadastro", dataRegister);
-        console.log("Fazendo o cadastro")
+        // console.log("Fazendo o cadastro")
         localStorage.setItem('vanbora:user', JSON.stringify(data))
         return true
     } catch (error) {
@@ -47,7 +47,7 @@ export async function isAuthenticate() {
     //acesso ao back-end
     try {
         const { data } = await api.get("/me");
-        console.log(data)
+        // console.log(data)
         return true
     } catch (error) {
         console.error(error)

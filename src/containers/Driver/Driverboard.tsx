@@ -8,10 +8,9 @@ import { isAuthenticate } from "../../services/AuthServices";
 function Driverboard() {
     const { user, refreshUser } = useUser();
 
+
     useEffect(() => {
         isAuthenticate()
-
-        refreshUser()
     }, [])
 
     const navigate = useNavigate()
