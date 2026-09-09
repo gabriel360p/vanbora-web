@@ -27,15 +27,27 @@ function NewVehicle() {
                     w-full
                     gap-3
                     ">
+                    {/*model  */}
                     <Input full label="Modelo" type="text" placeholder="Modelo" />
+                    {/* license_plate */}
                     <Input full label="Placa" type="text" placeholder="Placa" />
-                    <Input full label="Cor" type="text" placeholder="Cor" />
+                    {/* color */}
+                    <Input full label="Cor" type="color" placeholder="Cor" />
+                    {/*passenger_capacity  */}
                     <Input full label="Capacidade" type="number" placeholder="Capacidade" />
 
                 </div>
                 <div className="flex flex-col gap-1 w-full relative">
                     <Input type="file" label="Foto do veículo" />
                 </div>
+
+                <div className="flex w-full flex-col gap-2 mt-1">
+                    <label htmlFor="">Informações adicionais (opcional)</label>
+                    <textarea className="
+                    border border-gray-300 rounded-md p-4
+                    " name="" placeholder="Informações adicionais (opcional)" id=""></textarea>
+                </div>
+
                 <div className="w-[50%] mt-4">
                     <Button title="Salvar" type="button" full />
                 </div>
