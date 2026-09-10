@@ -19,7 +19,8 @@
     "react-hook-form": "^7.86.0",
     "react-router-dom": "^7.18.2",
     "tailwindcss": "^4.3.3",
-    "yup": "^1.7.1"
+    "yup": "^1.7.1",
+    "yup-locale-pt": "^0.0.9"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

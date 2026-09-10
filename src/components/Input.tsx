@@ -5,9 +5,10 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     placeholder?: string,
     full?: boolean,
     label?: string,
+    error?: string,
 }
 
-function Input({ type, placeholder, full, label, ...props }: InputProps) {
+function Input({ error, type, placeholder, full, label, ...props }: InputProps) {
     return (
         <>
             <label htmlFor={`input-${label}`}>{label}</label>
@@ -19,6 +20,11 @@ function Input({ type, placeholder, full, label, ...props }: InputProps) {
                 ${full ? 'w-full' : ''}
                 `}
                 id={`input-${label}`} type={`${type}`} placeholder={`${placeholder}`} />
+            {error && (
+                <p className="bg-red-500 text-white px-1 border border-red-500 rounded-xl w-fit">
+                    {error}
+                </p>
+            )}
         </>
     )
 }

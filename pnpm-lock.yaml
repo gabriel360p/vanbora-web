@@ -38,6 +38,9 @@ importers:
       yup:
         specifier: ^1.7.1
         version: 1.7.1
+      yup-locale-pt:
+        specifier: ^0.0.9
+        version: 0.0.9
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -1336,6 +1339,9 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
+  yup-locale-pt@0.0.9:
+    resolution: {integrity: sha512-Fpvu6NA04Uy/aXHNG2h1zvcizTf3WxuxHFX+cvamgCfrmtIcCnzb88Ek0q6+/Hj1BixO8a/bbfJAtIpSytQyWQ==}
+
   yup@1.7.1:
     resolution: {integrity: sha512-GKHFX2nXul2/4Dtfxhozv701jLQHdf6J34YDh2cEkpqoo8le5Mg6/LrdseVLrFarmFygZTlfIhHx/QKfb/QWXw==}
 
@@ -2387,6 +2393,8 @@ snapshots:
   yallist@3.1.1: {}
 
   yocto-queue@0.1.0: {}
+
+  yup-locale-pt@0.0.9: {}
 
   yup@1.7.1:
     dependencies:
