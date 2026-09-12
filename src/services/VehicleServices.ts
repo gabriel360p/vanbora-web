@@ -30,11 +30,24 @@ export async function deleteVehicle() {
 export async function newVehicle(vehicleData: RegisterDriverInterface) {
     //acesso ao back-end
     try {
-        const data = await api.post("/vehicle/store", vehicleData, {
-            headers: {
-                "Content-Type": "multipart/form-data"
-            }
-        });
+
+        const formData = new FormData();
+
+        Array.from(vehicleData.vehicle_photo).forEach(file => {
+            console.log(file)
+            formData.append('vehicle_photo[]', file)
+        })
+        // formData.append('vehicle_photo', vehicleData.vehicle_photo[0])
+        formData.append('model', vehicleData.model)
+        formData.append('license_plate', vehicleData.license_plate)
+        formData.append('color', vehicleData.color)
+        if (vehicleData.aditional) formData.append('aditional', vehicleData.aditional)
+
+        if (vehicleData.passenger_capacity) formData.append('passenger_capacity', String(vehicleData.passenger_capacity))
+
+        // const data = await axios.post("http://localhost:8000/api/vehicle/store", formData);
+        const data = await api.post("/vehicle/store", formData);
+
         console.log(data)
         console.log("Salvando novo veículo")
         return true;

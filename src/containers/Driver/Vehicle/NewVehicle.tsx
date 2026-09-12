@@ -69,7 +69,7 @@ function NewVehicle() {
                     </div>
                     <div className="flex flex-col gap-2 w-full relative">
                         {/* vehicle_photo */}
-                        <Input type="file" label="Foto do veículo"  {...register('vehicle_photo')} error={errors.vehicle_photo?.message} />
+                        <Input type="file" multiple label="Foto do veículo"  {...register('vehicle_photo')} error={errors.vehicle_photo?.message} />
                     </div>
 
                     <div className="flex w-full flex-col gap-2">

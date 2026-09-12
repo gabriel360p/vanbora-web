@@ -28,13 +28,13 @@ export const RegisterDriverValidateSchema = yup.object({
                 );
             }
         )
-        .test('fileSize', 'O tamanho máximo de arquivo é de 16 megabytes',
+        .test('fileSize', 'O tamanho máximo de arquivo é de 2 megabytes',
             (arquivo) => {
                 if (!arquivo) {
                     return true;
                 }
                 return Array.from(arquivo).every((file) => {
-                    return file.size <= 16 * 1024 * 1024;
+                    return file.size <= 2 * 1024 * 1024;
                 });
             }
         )
