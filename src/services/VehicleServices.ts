@@ -39,11 +39,11 @@ export async function newVehicle(vehicleData: RegisterDriverInterface) {
         })
         // formData.append('vehicle_photo', vehicleData.vehicle_photo[0])
         formData.append('model', vehicleData.model)
-        formData.append('license_plate', vehicleData.license_plate)
+        formData.append('plate', vehicleData.plate)
         formData.append('color', vehicleData.color)
         if (vehicleData.aditional) formData.append('aditional', vehicleData.aditional)
 
-        if (vehicleData.passenger_capacity) formData.append('passenger_capacity', String(vehicleData.passenger_capacity))
+        if (vehicleData.capacity) formData.append('capacity', String(vehicleData.capacity))
 
         // const data = await axios.post("http://localhost:8000/api/vehicle/store", formData);
         const data = await api.post("/vehicle/store", formData);

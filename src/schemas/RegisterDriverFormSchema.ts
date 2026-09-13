@@ -6,9 +6,9 @@ const filesTypes = [
 
 export const RegisterDriverValidateSchema = yup.object({
     model: yup.string().required("Este campo é obrigatório").max(10),
-    license_plate: yup.string().required("Este campo é obrigatório").max(10),
+    plate: yup.string().required("Este campo é obrigatório").max(10),
     color: yup.string().required("Este campo é obrigatório").max(100),
-    passenger_capacity: yup.number().typeError('Digite um número válido').required("Este campo é obrigatório").max(200),
+    capacity: yup.number().typeError('Digite um número válido').required("Este campo é obrigatório").max(200),
     aditional: yup.string().max(256),
     vehicle_photo: yup.mixed<FileList>()
         .test("required", "Selecione ao menos uma foto do veículo",

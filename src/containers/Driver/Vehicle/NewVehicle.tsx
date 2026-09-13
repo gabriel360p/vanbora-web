@@ -48,7 +48,7 @@ function NewVehicle() {
                             </div>
                             <div className=" flex flex-col gap-2 w-full">
                                 {/* license_plate */}
-                                <Input full label="Placa" type="text" placeholder="Placa"  {...register('license_plate')} error={errors.license_plate?.message} />
+                                <Input full label="Placa" type="text" placeholder="Placa"  {...register('plate')} error={errors.plate?.message} />
                             </div>
 
                         </div>
@@ -58,8 +58,8 @@ function NewVehicle() {
                                 <Input full label="Cor" type="text" placeholder="Cor" {...register('color')} error={errors.color?.message} />
                             </div>
                             <div className=" flex flex-col gap-2 w-full">
-                                {/* passenger_capacity */}
-                                <Input full label="Capacidade" type="number" placeholder="Capacidade" {...register('passenger_capacity')} error={errors.passenger_capacity?.message} />
+                                {/* capacity */}
+                                <Input full label="Capacidade" type="number" placeholder="Capacidade" {...register('capacity')} error={errors.capacity?.message} />
                             </div>
                         </div>
 

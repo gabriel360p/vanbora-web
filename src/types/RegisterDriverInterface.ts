@@ -10,9 +10,9 @@
 
 export interface RegisterDriverInterface {
     model: string,
-    license_plate: string,
+    plate: string,
     color: string,
-    passenger_capacity: number,
+    capacity: number,
     vehicle_photo: FileList,
     aditional?: string,
 }
