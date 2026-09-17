@@ -3,14 +3,23 @@ import Button from "../../components/Button";
 import { editDriver } from "../../services/DriverServices";
 import { useUser } from "../../contexts/userContext";
 import Input from "../../components/Input";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import { EditUserFormSchema } from "../../schemas/EditUserFormSchema";
+import type EditUserFormInterface from "../../types/EditUserFormInterface";
 
 function DriverProfile() {
     // const navigate = useNavigate();
     const { user } = useUser();
-    console.log(user)
+    // console.log(user)
 
-    function handleEdit() {
-        editDriver();
+    const { register, formState: { errors }, handleSubmit } = useForm<EditUserFormInterface>({
+        resolver: yupResolver(EditUserFormSchema)
+    });
+
+    function handleEdit(data: EditUserFormInterface) {
+        editDriver(data);
     }
 
     return (
@@ -83,7 +92,7 @@ function DriverProfile() {
 
             </div>
 
-            <form action="">
+            <form onSubmit={handleSubmit((data: EditUserFormInterface) => handleEdit(data))}>
 
                 <div className="
             flex flex-col gap-4 md:gap-6
@@ -101,9 +110,9 @@ function DriverProfile() {
                         <hr className="text-gray-300 w-full" />
 
                         <div className="flex flex-col lg:flex-row gap-4">
-                            <Input type="text" placeholder="Nome Completo" />
-                            <Input type="email" placeholder="Email" />
-                            <Input type="number" placeholder="CPF" />
+                            <Input type="text" placeholder="Nome Completo" {...register('name')} error={errors.name?.message} />
+                            <Input type="email" placeholder="Email" {...register('email')} error={errors.email?.message} />
+                            <Input type="number" placeholder="CPF" {...register('cpf')} error={errors.cpf?.message} />
 
                         </div>
                     </div>
@@ -121,8 +130,8 @@ function DriverProfile() {
                         <hr className="text-gray-300 w-full" />
 
                         <div className="flex flex-col lg:flex-row gap-4">
-                            <Input type="tel" placeholder="Telefone principal" />
-                            <Input type="tel" placeholder="Telefone secundário" />
+                            <Input type="tel" placeholder="Telefone principal" {...register('phone1')} error={errors.phone1?.message} />
+                            <Input type="tel" placeholder="Telefone secundário" {...register('phone2')} error={errors.phone2?.message} />
                         </div>
                     </div>
 
@@ -140,7 +149,7 @@ function DriverProfile() {
 
                         <div className="flex flex-col lg:flex-row gap-4">
                             <div className="w-full max-w-100">
-                                <Input type="password" placeholder="Alterar Senha" full />
+                                <Input type="password" placeholder="Alterar Senha" full {...register('password')} error={errors.password?.message} />
                             </div>
                             {/* <Input type="tel" placeholder="Telefone secundário" /> */}
                         </div>
@@ -159,9 +168,8 @@ function DriverProfile() {
 
                         <div className="flex flex-col lg:flex-row gap-4">
                             <div className="w-full max-w-100">
-                                <Input type="file" full />
+                                <Input type="file" full {...register('avatar')} error={errors.avatar?.message} />
                             </div>
-                            {/* <Input type="tel" placeholder="Telefone secundário" /> */}
                         </div>
                     </div>
                     <div className="flex justify-center md:justify-end w-full">
@@ -375,7 +383,7 @@ function DriverProfile() {
                 </div>
             </div> */}
 
-        </section>
+        </section >
     )
 }
 

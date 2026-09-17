@@ -1,11 +1,14 @@
 // import { api } from "./Axios";
 
+import type EditUserFormInterface from "../types/EditUserFormInterface"
+import { api } from "./Axios";
 
-export async function editDriver() {
+
+export async function editDriver(dataUpdateDriver: EditUserFormInterface) {
     //acesso ao back-end
     try {
-        // const data = await api.get("/");
-        // console.log(data)
+        const data = await api.post("/driver/update", dataUpdateDriver);
+        console.log(data)
         // return data;
         console.log("Salvando alterações motorista")
     } catch (error) {
@@ -16,7 +19,7 @@ export async function editDriver() {
 export async function deleteDriver() {
     //acesso ao back-end
     try {
-        // const data = await api.get("/");
+        // const data = await api.get("");
         // console.log(data)
         // return data;
         console.log("Deletando minha conta")
