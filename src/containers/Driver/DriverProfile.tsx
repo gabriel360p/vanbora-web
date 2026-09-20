@@ -1,4 +1,4 @@
-import { EnvelopeIcon, ImageIcon, LockIcon, PhoneIcon, UserIcon } from "@phosphor-icons/react";
+import { EnvelopeIcon, ImageIcon, LockIcon, PhoneIcon, SpinnerIcon, UserIcon } from "@phosphor-icons/react";
 import Button from "../../components/Button";
 import { editDriver } from "../../services/DriverServices";
 import { useUser } from "../../contexts/userContext";
@@ -8,18 +8,22 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { EditUserFormSchema } from "../../schemas/EditUserFormSchema";
 import type EditUserFormInterface from "../../types/EditUserFormInterface";
+import { useState } from "react";
 
 function DriverProfile() {
     // const navigate = useNavigate();
     const { user } = useUser();
+    const [load, setLoad] = useState<boolean>(false);
     // console.log(user)
 
     const { register, formState: { errors }, handleSubmit } = useForm<EditUserFormInterface>({
         resolver: yupResolver(EditUserFormSchema)
     });
 
-    function handleEdit(data: EditUserFormInterface) {
-        editDriver(data);
+    async function handleEdit(data: EditUserFormInterface) {
+        setLoad(true);
+        await editDriver(data);
+        setLoad(false);
     }
 
     return (
@@ -29,7 +33,12 @@ function DriverProfile() {
         md:justify-center 
         gap-5 px-4 mt-2
         ">
-
+            {load && (
+                <div className="flex fixed w-screen h-screen justify-center items-center">
+                    < span className="animate-spin" > <SpinnerIcon size={32} className="text-primary" /> </ span>
+                </div >
+            )
+            }
             <div className="flex items-center flex-col ">
                 <div className="
                 flex 
@@ -178,210 +187,6 @@ function DriverProfile() {
                 </div>
 
             </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            {/* <div
-                className="
-                flex 
-                w-full
-                items-center justify-center 
-                "
-            >
-                <div className="
-                flex flex-col 
-                justify-center items-center
-                w-full max-w-300 min-h-120 
-                gap-5 px-2.5 lg:px-4 py-4
-                border border-gray-300 rounded shadow-md 
-                ">
-                    <div className="
-                    flex flex-col 
-                    w-full
-                    gap-5
-                    ">
-                        <div className="w-auto relative">
-                            <input
-                                placeholder="Nome completo"
-                                type="text"
-
-                                onChange={(e) => e.target.value}
-                                className={`
-                                    w-full    
-                                    border border-gray-300 rounded-md
-                                    p-2 ps-10                            
-                            `}
-                            />
-                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-1.25 right-0 left-1">
-                                <UserIcon size={18} className="" />
-                            </div>
-                        </div>
-
-                        <div className="w-auto relative">
-                            <input
-                                placeholder="Email"
-                                type="text"
-
-                                onChange={(e) => e.target.value}
-                                className={`
-                                    w-full    
-                                    border border-gray-300 rounded-md
-                                    p-2 ps-10                            
-                            `}
-                            />
-                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-1.25 right-0 left-1">
-                                <UserIcon size={18} className="" />
-                            </div>
-                        </div>
-                        <div className="w-auto relative">
-                            <input
-                                placeholder="CPF"
-                                type="text"
-
-                                onChange={(e) => e.target.value}
-                                className={`
-                                    w-full    
-                                    border border-gray-300 rounded-md
-                                    p-2 ps-10                            
-                            `}
-                            />
-                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-1.25 right-0 left-1">
-                                <UserIcon size={18} className="" />
-                            </div>
-                        </div>
-                        <div className="w-auto relative">
-                            <input
-                                placeholder="Alterar senha"
-                                type="password"
-                                className={`
-                                    w-full    
-                                    border border-gray-300 rounded-md
-                                    p-2 ps-10                            
-                            `}
-                            />
-                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-1.25 right-0 left-1">
-                                <PasswordIcon size={18} className="" />
-                            </div>
-                        </div>
-
-                        <div className="w-auto relative">
-                            <input
-                                placeholder="Número de telefone 1 (obrigatório)"
-                                type="tel"
-
-                                onChange={(e) => e.target.value}
-                                className={`
-                                    w-full    
-                                    border border-gray-300 rounded-md
-                                    p-2 ps-10                            
-                            `}
-                            />
-                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-1.25 right-0 left-1">
-                                <PhoneIcon size={18} className="" />
-                            </div>
-                        </div>
-                        <div className="w-auto relative">
-                            <input
-                                placeholder="Número de telefone 2 (opcional)"
-                                type="tel"
-
-                                onChange={(e) => e.target.value}
-                                className={`
-                                    w-full    
-                                    border border-gray-300 rounded-md
-                                    p-2 ps-10                            
-                            `}
-                            />
-                            <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-1.25 right-0 left-1">
-                                <PhoneIcon size={18} className="" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="flex flex-col gap-2 w-full relative">
-                        <label htmlFor="profile">Alterar foto de perfil</label>
-                        <input
-                            id="profile"
-                            type="file"
-                            className={`
-                                    w-full    
-                                    border border-gray-300 rounded-md
-                                    p-2 ps-10                            
-                            `}
-                        />
-                        <div className="flex cursor-pointer items-center justify-center w-8 h-8 absolute top-8.75 right-0 left-1">
-                            <UserCircleIcon size={18} className="" />
-                        </div>
-                    </div>
-                    <div className="w-[50%]">
-                        <Button title="Salvar" type="button" full click={() => handleEdit()} />
-                    </div>
-                </div>
-            </div> */}
 
         </section >
     )

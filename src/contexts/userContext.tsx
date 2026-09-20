@@ -5,10 +5,11 @@ const UserContext = createContext<typeof UserContext>(null);
 
 //é um component que tem dados globais que podem ser acessados por qualquer outro component filho
 export function UserProvider({ children }) {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState<object | null | string>({});
 
     function refreshUser() {
         setUser(JSON.parse(localStorage.getItem('vanbora:user')))
+        // console.log(user)
         return user;
     }
 

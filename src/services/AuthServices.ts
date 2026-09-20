@@ -30,11 +30,21 @@ export async function logout() {
 }
 
 export async function register(dataRegister: RegisterInterface) {
-    //acesso ao back-end
     try {
+        const formData = new FormData();
+        formData.append("name", dataRegister.name);
+        formData.append("email", dataRegister.email);
+        formData.append("password", dataRegister.password);
+        formData.append("cpf", String(dataRegister.cpf));
+        formData.append("phone1", String(dataRegister.phone1));
+        formData.append("phone2", String(dataRegister.phone2));
 
-        const { data } = await api.post("/cadastro", dataRegister);
-        // console.log("Fazendo o cadastro")
+        if (dataRegister?.avatar)
+            formData.append("avatar", dataRegister.avatar[0]);
+
+        const { data } = await api.post("/cadastro", formData);
+        console.log("Fazendo o cadastro")
+        // console.log(data);
         localStorage.setItem('vanbora:user', JSON.stringify(data))
         return true
     } catch (error) {
@@ -47,6 +57,7 @@ export async function isAuthenticate() {
     //acesso ao back-end
     try {
         const { data } = await api.get("/me");
+
         // console.log(data)
         return true
     } catch (error) {

@@ -5,5 +5,5 @@ export default interface RegisterInterface {
     password: string,
     phone1: number,
     phone2: number,
-    avatar?: File,
+    avatar?: FileList,
 }

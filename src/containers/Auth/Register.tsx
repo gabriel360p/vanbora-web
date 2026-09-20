@@ -41,8 +41,7 @@ function Register() {
                     <div className="p-4">
                         <img src={logo} alt="" className="object-cover" />
                     </div>
-                    <form onSubmit={handleSubmit((dataRegister: RegisterInterface) => {
-                        console.log(dataRegister)
+                    <form encType="multipart/form-data" onSubmit={handleSubmit((dataRegister: RegisterInterface) => {
                         handleRegister(dataRegister)
                     })}>
                         <div className="

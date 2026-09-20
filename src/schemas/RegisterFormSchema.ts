@@ -39,18 +39,17 @@ export const RegisterValidateSchema = yup.object({
 
     phone2: yup
         .number()
-        .nullable()
-        .optional(),
+        .notRequired(),
 
 
     avatar: yup
         .mixed<FileList>()
-        .optional()
+        .notRequired()
         .test(
             'fileType',
             'Formato de arquivo inválido',
             (files) => {
-                if (!files || files.length === 0) {
+                if (!files[0] || files[0].length === 0) {
                     return true;
                 }
 
@@ -61,7 +60,7 @@ export const RegisterValidateSchema = yup.object({
             'fileSize',
             'O arquivo excede o limite de 2MB de tamanho',
             (files) => {
-                if (!files || files.length === 0) {
+                if (!files[0] || files[0].length === 0) {
                     return true;
                 }
 

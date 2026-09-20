@@ -83,9 +83,9 @@ export const EditUserFormSchema = yup.object({
             'fileType',
             'Formato de arquivo inválido',
             (file) => {
-                if (file[0] != undefined) {
-                    console.log(file[0].type)
-                    return SUPPORTED_FORMATS.includes(file[0].type);
+                if (file != undefined) {
+                    console.log(file.type)
+                    return SUPPORTED_FORMATS.includes(file.type);
                 }
                 else return true
             }
@@ -94,15 +94,10 @@ export const EditUserFormSchema = yup.object({
             'fileSize',
             'O arquivo excede o limite de 2MB de tamanho',
             (file) => {
-                if (file[0] != undefined) {
-                    return file[0].size <= MAX_FILE_SIZE;
+                if (file != undefined) {
+                    return file.size <= MAX_FILE_SIZE;
                 }
                 else return true
-                // if (!file) {
-                //     return true;
-                // } else {
-                //     return file.size <= MAX_FILE_SIZE;
-                // }
             }
         )
         .notRequired()

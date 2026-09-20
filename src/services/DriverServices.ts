@@ -7,10 +7,13 @@ import { api } from "./Axios";
 export async function editDriver(dataUpdateDriver: EditUserFormInterface) {
     //acesso ao back-end
     try {
-        const data = await api.post("/driver/update", dataUpdateDriver);
+        const { data } = await api.post("/driver/update", dataUpdateDriver);
+        // console.log(dataUpdateDriver)
         console.log(data)
-        // return data;
+        //atualizando dados do usuário no react após alterar
+        localStorage.setItem('vanbora:user', JSON.stringify(data))
         console.log("Salvando alterações motorista")
+        return data;
     } catch (error) {
         console.error(error)
     }
