@@ -12,7 +12,7 @@ import { useState } from "react";
 
 function DriverProfile() {
     // const navigate = useNavigate();
-    const { user } = useUser();
+    const { user, refreshUser } = useUser();
     const [load, setLoad] = useState<boolean>(false);
     // console.log(user)
 
@@ -23,6 +23,7 @@ function DriverProfile() {
     async function handleEdit(data: EditUserFormInterface) {
         setLoad(true);
         await editDriver(data);
+        refreshUser();
         setLoad(false);
     }
 
@@ -49,8 +50,7 @@ function DriverProfile() {
                 py-3 px-2 gap-2
                 ">
                     <div className="flex h-full w-40 items-start justify-center">
-                        {/* <img src="" alt="foto-motorista" /> */}
-                        <div className="w-25 h-25 bg-gray-800 rounded-full" ></div>
+                        <img src={user.photoUrl} alt="foto-motorista" className="object-cover w-25 h-25 bg-gray-800 rounded-full" />
                     </div>
                     <p className="font-semibold md:text-[1.2rem]">Olá {user.name}!</p>
                     <hr className="text-gray-300 w-full" />
@@ -101,7 +101,7 @@ function DriverProfile() {
 
             </div>
 
-            <form onSubmit={handleSubmit((data: EditUserFormInterface) => handleEdit(data))}>
+            <form encType="multipart/form-data" onSubmit={handleSubmit((data: EditUserFormInterface) => handleEdit(data))}>
 
                 <div className="
             flex flex-col gap-4 md:gap-6

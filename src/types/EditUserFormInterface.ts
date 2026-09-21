@@ -1,9 +1,9 @@
 export default interface EditUserFormInterface {
-    name?: string | null,
-    email?: string | null,
-    cpf?: number | null,
-    password?: string | null,
-    phone1?: number | null,
-    phone2?: number | null,
-    avatar?: File | null,
+    name?: string,
+    email?: string,
+    cpf?: number,
+    password?: string,
+    phone1?: number,
+    phone2?: number,
+    avatar?: FileList,
 }

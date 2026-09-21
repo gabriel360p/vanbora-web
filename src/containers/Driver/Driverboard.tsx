@@ -25,8 +25,7 @@ function Driverboard() {
                 py-8 px-2 mt-2 gap-2
                 ">
                     <div className="flex h-full w-40 items-start justify-center">
-                        {/* <img src="" alt="foto-motorista" /> */}
-                        <div className="w-25 h-25 bg-gray-800 rounded-full" ></div>
+                        <img src={user.photoUrl} alt="foto-motorista" className="object-cover w-25 h-25 bg-gray-800 rounded-full" />
                     </div>
                     <div className="flex gap-4 flex-col w-full max-w-80">
                         <p className="font-semibold md:text-[1.2rem]">Olá, {user.name}!</p>

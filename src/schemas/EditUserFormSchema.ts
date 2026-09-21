@@ -11,7 +11,7 @@ setLocale({
     },
 });
 
-const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
+const MAX_FILE_SIZE = 4 * 1024 * 1024; // 8MB
 const SUPPORTED_FORMATS = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
 
 export const EditUserFormSchema = yup.object({
@@ -78,14 +78,15 @@ export const EditUserFormSchema = yup.object({
 
 
     avatar: yup
-        .mixed<File>()
+        .mixed<FileList>()
+        .notRequired()
         .test(
             'fileType',
             'Formato de arquivo inválido',
             (file) => {
-                if (file != undefined) {
-                    console.log(file.type)
-                    return SUPPORTED_FORMATS.includes(file.type);
+                if (file?.length > 0) {
+                    console.log(file)
+                    return SUPPORTED_FORMATS.includes(file[0].type);
                 }
                 else return true
             }
@@ -94,12 +95,11 @@ export const EditUserFormSchema = yup.object({
             'fileSize',
             'O arquivo excede o limite de 2MB de tamanho',
             (file) => {
-                if (file != undefined) {
-                    return file.size <= MAX_FILE_SIZE;
+                if (file?.length > 0) {
+                    return file[0].size <= MAX_FILE_SIZE;
                 }
                 else return true
             }
         )
-        .notRequired()
 
 });

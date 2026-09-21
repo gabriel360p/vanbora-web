@@ -7,10 +7,11 @@ export async function login(dataLogin: LoginInterface) {
     //acesso ao back-end
     try {
         const { data } = await api.post("/login", dataLogin);
-        // console.log(data)
-        // console.log(JSON.parse(data))
-        //salvando os dados no localstorage para ser acessado com o context
+
+        data.photoUrl = "http://localhost:8000" + data.photoUrl;;
+        // console.log(data);
         localStorage.setItem('vanbora:user', JSON.stringify(data))
+
         return true;
     } catch (error) {
         console.error(error)
