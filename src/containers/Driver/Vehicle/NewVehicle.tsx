@@ -5,12 +5,16 @@ import type { RegisterDriverInterface } from "../../../types/RegisterDriverInter
 import { yupResolver } from '@hookform/resolvers/yup';
 import { RegisterDriverValidateSchema } from "../../../schemas/RegisterDriverFormSchema";
 import { newVehicle } from "../../../services/VehicleServices";
+// import { useState } from "react";
 
 function NewVehicle() {
     const { register, formState: { errors }, handleSubmit } = useForm<RegisterDriverInterface>({
         resolver: yupResolver(RegisterDriverValidateSchema)
     });
+    // const [vehicleData, setVehicleData] = useState<RegisterDriverInterface>();
+    // function handleClearFiles(data: RegisterDriverInterface) {
 
+    // }
     function handleRegisterDriver(data: RegisterDriverInterface) {
         console.log(data)
         newVehicle(data);

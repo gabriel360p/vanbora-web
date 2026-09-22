@@ -11,7 +11,8 @@ export const RegisterDriverValidateSchema = yup.object({
     capacity: yup.number().typeError('Digite um número válido').required("Este campo é obrigatório").max(200),
     aditional: yup.string().max(256),
     vehicle_photo: yup.mixed<FileList>()
-        .test("required", "Selecione ao menos uma foto do veículo",
+
+        .test("required", "Selecione pelo menos uma foto do veículo",
             (arquivo) => {
                 if (arquivo?.length === 0) return false;
                 return true;
@@ -38,5 +39,13 @@ export const RegisterDriverValidateSchema = yup.object({
                 });
             }
         )
+        .test('limit', "Selecione no máximo 3 fotos",
+            (arquivo) => {
+                if (arquivo) {
+                    if (arquivo?.length > 3) return false
+                    else return true
+                }
+            })
+
         .required()
 });
