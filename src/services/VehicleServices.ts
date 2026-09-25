@@ -3,6 +3,19 @@
 import type { RegisterDriverInterface } from "../types/RegisterDriverInterface";
 import { api } from "./Axios";
 
+export async function getAllVehicles() {
+    //acesso ao back-end
+    try {
+        const { data } = await api.get("/vehicle");
+        console.log(data)
+        // return data;
+        console.log("Pegando todos os veículos")
+        return data;
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 export async function editVehicle() {
     //acesso ao back-end
     try {
@@ -48,7 +61,7 @@ export async function newVehicle(vehicleData: RegisterDriverInterface) {
         // const data = await axios.post("http://localhost:8000/api/vehicle/store", formData);
         const data = await api.post("/vehicle/store", formData);
 
-        console.log(data)
+        // console.log(data)
         console.log("Salvando novo veículo")
         return true;
     } catch (error) {

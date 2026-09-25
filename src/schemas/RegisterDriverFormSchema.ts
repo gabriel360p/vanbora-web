@@ -5,19 +5,12 @@ const filesTypes = [
 ];
 
 export const RegisterDriverValidateSchema = yup.object({
-    model: yup.string().required("Este campo é obrigatório").max(10),
+    model: yup.string().required("Este campo é obrigatório").max(100),
     plate: yup.string().required("Este campo é obrigatório").max(10),
     color: yup.string().required("Este campo é obrigatório").max(100),
     capacity: yup.number().typeError('Digite um número válido').required("Este campo é obrigatório").max(200),
     aditional: yup.string().max(256),
     vehicle_photo: yup.mixed<FileList>()
-
-        .test("required", "Selecione pelo menos uma foto do veículo",
-            (arquivo) => {
-                if (arquivo?.length === 0) return false;
-                return true;
-            }
-        )
         .test("fileType", "Tipo de arquivo não suportado, use 'jpeg' ou 'png' ou'jpg'",
             (arquivo) => {
                 if (!arquivo) {
@@ -39,13 +32,13 @@ export const RegisterDriverValidateSchema = yup.object({
                 });
             }
         )
-        .test('limit', "Selecione no máximo 3 fotos",
+        .test('limit', "Selecione no máximo 2 fotos do veículo",
             (arquivo) => {
                 if (arquivo) {
-                    if (arquivo?.length > 3) return false
+                    if (arquivo?.length > 2) return false
                     else return true
                 }
             })
 
-        .required()
+        .required("Selecione pelo menos uma foto do veículo")
 });

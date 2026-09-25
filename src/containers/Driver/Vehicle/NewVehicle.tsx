@@ -5,19 +5,27 @@ import type { RegisterDriverInterface } from "../../../types/RegisterDriverInter
 import { yupResolver } from '@hookform/resolvers/yup';
 import { RegisterDriverValidateSchema } from "../../../schemas/RegisterDriverFormSchema";
 import { newVehicle } from "../../../services/VehicleServices";
-// import { useState } from "react";
+import { SpinnerIcon, TrashIcon } from "@phosphor-icons/react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function NewVehicle() {
-    const { register, formState: { errors }, handleSubmit } = useForm<RegisterDriverInterface>({
+    const { register, resetField, formState: { errors }, handleSubmit } = useForm<RegisterDriverInterface>({
         resolver: yupResolver(RegisterDriverValidateSchema)
     });
-    // const [vehicleData, setVehicleData] = useState<RegisterDriverInterface>();
-    // function handleClearFiles(data: RegisterDriverInterface) {
+    const [load, setLoad] = useState<boolean>(false);
+    const navigate = useNavigate();
 
-    // }
-    function handleRegisterDriver(data: RegisterDriverInterface) {
-        console.log(data)
-        newVehicle(data);
+    function handleClearFiles() {
+        resetField('vehicle_photo');
+
+    }
+
+    function handleRegisterDriver(vehicleData: RegisterDriverInterface) {
+        setLoad(true)
+        newVehicle(vehicleData!);
+        setLoad(false)
+        navigate('/painel-motorista');
     }
 
     return (
@@ -27,12 +35,20 @@ function NewVehicle() {
         w-screen 
         px-5 
         ">
+            {load && (
+                <div className="flex fixed w-screen h-screen justify-center items-center">
+                    < span className="animate-spin" > <SpinnerIcon size={32} className="text-primary" /> </ span>
+                </div >
+            )
+            }
 
             <div>
                 <h1 className="font-semibold text-xl my-5">Novo veículo</h1>
             </div>
 
-            <form encType="multipart/form-data" className="flex w-full justify-center" onSubmit={handleSubmit((data) => { handleRegisterDriver(data) })}>
+            <form encType="multipart/form-data" className="flex w-full justify-center" onSubmit={handleSubmit((data) => {
+                handleRegisterDriver(data)
+            })}>
                 <div className="
                 flex flex-col 
                 justify-center items-center
@@ -71,9 +87,13 @@ function NewVehicle() {
 
 
                     </div>
-                    <div className="flex flex-col gap-2 w-full relative">
-                        {/* vehicle_photo */}
-                        <Input type="file" multiple label="Foto do veículo"  {...register('vehicle_photo')} error={errors.vehicle_photo?.message} />
+                    <div className="flex items-center gap-2 w-full">
+                        <div className="flex flex-col gap-2 w-full">
+                            {/* vehicle_photo */}
+                            <Input type="file" multiple label="Foto do veículo"  {...register('vehicle_photo')} error={errors.vehicle_photo?.message} />
+                        </div>
+
+                        <span className="button-normal h-fit w-fit" onClick={handleClearFiles}><TrashIcon /> </span>
                     </div>
 
                     <div className="flex w-full flex-col gap-2">

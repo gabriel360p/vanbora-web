@@ -1,10 +1,14 @@
 import { deleteVehicle } from "../services/VehicleServices";
+import type Vehicle from "../types/VehicleInterface";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 
-function VehicleRow() {
-    const navigate = useNavigate()
+interface props {
+    data: Vehicle,
+}
 
+function VehicleRow({ data }: props) {
+    const navigate = useNavigate()
     return (
         <>
             <div className="
@@ -18,7 +22,7 @@ function VehicleRow() {
                     w-full
                     ">
                     <p className="font-bold">
-                        Mercedes Sprinter
+                        {data.model}
                     </p>
                 </div>
                 <div className="flex w-full">
@@ -26,8 +30,7 @@ function VehicleRow() {
                     flex
                     w-full max-w-45
                     ">
-                        {/* <img src="" alt="foto-veiculo" /> */}
-                        <div className="w-full h-30 bg-gray-800 rounded-md" ></div>
+                        <img src={'http://localhost:8000' + data.photos_path[0]} className="object-cover w-full h-30 rounded-md" alt="foto-veiculo" />
                     </div>
 
                     <div className="
@@ -36,8 +39,8 @@ function VehicleRow() {
                     gap-1 ps-2.5 md:ps-4
                     ">
                         <div className="flex flex-col gap-1">
-                            <p className="text-[1rem] md:text-lg font-semibold">ABC - 1234</p>
-                            <p className="text-[1rem] md:text-lg">16 lugares</p>
+                            <p className="text-[1rem] md:text-lg font-semibold">Placa: {data.plate}</p>
+                            <p className="text-[1rem] md:text-lg">{data.capacity} lugares</p>
                         </div>
                         <div className="flex gap-1">
                             <Button type="button" title="Editar" outline click={() => navigate('/veiculo/1')} />

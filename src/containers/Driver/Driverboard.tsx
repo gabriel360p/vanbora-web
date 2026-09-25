@@ -1,16 +1,26 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import TripRow from "../../components/TripRow";
 import VehicleRow from "../../components/VehicleRow";
 import { useUser } from "../../contexts/userContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { isAuthenticate } from "../../services/AuthServices";
+import { getAllVehicles } from "../../services/VehicleServices";
+import type Vehicle from "../../types/VehicleInterface";
 function Driverboard() {
-    const { user, refreshUser } = useUser();
+    const { user } = useUser();
 
+    const [vehicles, setVehicles] = useState<Awaited<ReturnType<typeof getAllVehicles>>>([]);
+
+    async function handleGetAllVehicles() {
+        const vehiclesData = await getAllVehicles();
+        setVehicles(vehiclesData);
+    }
 
     useEffect(() => {
-        isAuthenticate()
+        isAuthenticate();
+        handleGetAllVehicles();
     }, [])
 
     const navigate = useNavigate()
@@ -62,9 +72,11 @@ function Driverboard() {
                 justify-center md:justify-normal
                 gap-3
                 ">
-                    <VehicleRow />
-                    <VehicleRow />
-                    <VehicleRow />
+                    {vehicles ? vehicles.map((vehicle: Vehicle) => (
+                        <VehicleRow data={vehicle} />
+                    )) : (
+                        <h2>Cadastre seu veículo</h2>
+                    )}
                 </div>
 
             </div>
