@@ -5,10 +5,14 @@ import Roteamento from './routes.tsx'
 import * as Yup from 'yup';
 import { pt } from 'yup-locale-pt';
 Yup.setLocale(pt);
-
+import { ToastContainer } from 'react-toastify';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Roteamento />
+    <ToastContainer
+      autoClose={5000}
+      draggable
+    />
   </StrictMode>,
 )

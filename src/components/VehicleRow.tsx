@@ -43,7 +43,7 @@ function VehicleRow({ data }: props) {
                             <p className="text-[1rem] md:text-lg">{data.capacity} lugares</p>
                         </div>
                         <div className="flex gap-1">
-                            <Button type="button" title="Editar" outline click={() => navigate('/veiculo/1')} />
+                            <Button type="button" title="Editar" outline click={() => navigate(`/veiculo/${data.id}`)} />
                             <Button type="button" title="Apagar" outline click={() => deleteVehicle()} />
                         </div>
 

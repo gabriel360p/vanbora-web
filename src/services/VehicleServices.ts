@@ -1,5 +1,6 @@
 // import { api } from "./Axios";
 
+import type { EditDriverInterface } from "../types/EditDriverInterface";
 import type { RegisterDriverInterface } from "../types/RegisterDriverInterface";
 import { api } from "./Axios";
 
@@ -16,13 +17,13 @@ export async function getAllVehicles() {
     }
 }
 
-export async function editVehicle() {
+export async function editVehicle(id: string) {
     //acesso ao back-end
     try {
-        // const data = await api.get("/");
-        // console.log(data)
-        // return data;
-        console.log("Salvando alterações de veículo")
+        const { data } = await api.get(`/vehicle/edit/${id}`);
+        console.log(data)
+        console.log("buscando informações do veículo")
+        return data;
     } catch (error) {
         console.error(error)
     }
@@ -39,6 +40,36 @@ export async function deleteVehicle() {
         console.error(error)
     }
 }
+export async function updateVehicle(vehicleData: EditDriverInterface) {
+    try {
+
+        const formData = new FormData();
+
+        if (vehicleData.vehicle_photo) {
+            Array.from(vehicleData.vehicle_photo).forEach(file => {
+                console.log(file)
+                formData.append('vehicle_photo[]', file)
+            })
+        }
+
+        if (vehicleData.model) formData.append('model', vehicleData.model)
+        if (vehicleData.plate) formData.append('plate', vehicleData.plate)
+        if (vehicleData.color) formData.append('color', vehicleData.color)
+        if (vehicleData.aditional) formData.append('aditional', vehicleData.aditional)
+
+        if (vehicleData.capacity) formData.append('capacity', String(vehicleData.capacity))
+
+        const { data } = await api.post("/vehicle/update", formData);
+
+        console.log(data)
+        console.log("Editando veículo")
+        return data;
+    } catch (error) {
+        console.error(error)
+        return false;
+    }
+}
+
 
 export async function newVehicle(vehicleData: RegisterDriverInterface) {
     //acesso ao back-end
@@ -50,7 +81,6 @@ export async function newVehicle(vehicleData: RegisterDriverInterface) {
             console.log(file)
             formData.append('vehicle_photo[]', file)
         })
-        // formData.append('vehicle_photo', vehicleData.vehicle_photo[0])
         formData.append('model', vehicleData.model)
         formData.append('plate', vehicleData.plate)
         formData.append('color', vehicleData.color)
@@ -58,8 +88,7 @@ export async function newVehicle(vehicleData: RegisterDriverInterface) {
 
         if (vehicleData.capacity) formData.append('capacity', String(vehicleData.capacity))
 
-        // const data = await axios.post("http://localhost:8000/api/vehicle/store", formData);
-        const data = await api.post("/vehicle/store", formData);
+        await api.post("/vehicle/store", formData);
 
         // console.log(data)
         console.log("Salvando novo veículo")
