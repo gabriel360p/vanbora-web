@@ -8,6 +8,7 @@ export default interface Vehicle {
     capacity: number,
     aditional?: string,
     status?: boolean,
+    photos_url?: string[] | undefined | null,
     // created_at:' ,
     // updated_at'
 

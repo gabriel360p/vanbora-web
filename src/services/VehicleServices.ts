@@ -71,6 +71,21 @@ export async function updateVehicle(vehicleData: EditDriverInterface) {
 }
 
 
+export async function deletePhoto(pathPhoto: string, id: number) {
+    try {
+
+        const formData = new FormData();
+        formData.append('pathPhoto', pathPhoto);
+
+        const data = await api.post(`/vehicle/destroy/photo/${id}`, formData);
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.error(error)
+        return false;
+    }
+}
+
 export async function newVehicle(vehicleData: RegisterDriverInterface) {
     //acesso ao back-end
     try {

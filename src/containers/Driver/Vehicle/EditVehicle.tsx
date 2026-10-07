@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import { useNavigate, useParams } from "react-router-dom";
-import { editVehicle, updateVehicle } from "../../../services/VehicleServices";
-import { SpinnerIcon } from "@phosphor-icons/react";
+import { deletePhoto, editVehicle, updateVehicle } from "../../../services/VehicleServices";
+import { SpinnerIcon, TrashIcon } from "@phosphor-icons/react";
 import type Vehicle from "../../../types/VehicleInterface";
 import type { EditDriverInterface } from "../../../types/EditDriverInterface";
 import { EditDriverFormSchema } from "../../../schemas/EditDriverFormSchema";
@@ -18,10 +18,18 @@ function EditVehicle() {
         resolver: yupResolver(EditDriverFormSchema)
     });
     const [load, setLoad] = useState<boolean>(false);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+
+    async function handleDeletePhoto(path: string, id: number) {
+        const data = await deletePhoto(path, id);
+        console.log(data)
+    }
 
     function handleClearFiles() {
+        setLoad(true)
         resetField('vehicle_photo');
+        setLoad(false)
+
     }
 
     function handleEditDriver(vehicleData: EditDriverInterface) {
@@ -138,7 +146,7 @@ function EditVehicle() {
                             />
                         </div>
 
-                        {/* <span className="button-normal h-fit w-fit" onClick={handleClearFiles}><TrashIcon /> </span> */}
+                        <span className="button-normal h-fit w-fit" onClick={handleClearFiles}><TrashIcon className="cursor-pointer" /> </span>
                     </div>
 
                     <div className="flex w-full flex-col gap-2">
@@ -153,6 +161,32 @@ function EditVehicle() {
                                 {errors.aditional?.message}
                             </p>
                         )}
+                    </div>
+                    <div className="flex flex-col md:flex-row gap-4 md:gap-10">
+
+                        {typeof (vehicle?.photos_url) === "object" ? (
+                            <>
+                                {vehicle?.photos_url?.map((photo, index) => (
+
+                                    <div key={photo} className="flex gap-1 md:flex-col justify-center items-center w-full">
+                                        <img src={`http://localhost:8000${photo}`} alt="foto-veículo" className="object-cover w-auto h-50 md:max-h-80" />
+
+                                        <span className="button-normal h-fit w-fit " onClick={() => { handleDeletePhoto(vehicle.photos_path[index], vehicle.id) }}><TrashIcon className="cursor-pointer" /> </span>
+
+                                    </div>
+                                ))}
+                            </>
+                        ) : (
+                            <div className="flex gap-1 md:flex-col justify-center items-center w-full">
+                                <img src={`http://localhost:8000${vehicle?.photos_url}`} alt="foto-veículo" className="object-cover w-auto h-50 md:max-h-80" />
+
+                                <span className="button-normal h-fit w-fit " onClick={() => { handleDeletePhoto(vehicle?.photos_url, vehicle?.id) }}><TrashIcon className="cursor-pointer" /> </span>
+
+                            </div>
+
+                        )}
+
+
                     </div>
 
                     <div className="w-[50%] mt-2">
